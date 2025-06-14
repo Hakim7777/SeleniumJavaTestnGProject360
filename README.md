@@ -1,68 +1,96 @@
-# Selenium Java TestNG Project 360
 
-## Description
+Selenium Java TestNG Project 360
+Description
+Ce projet est un framework de test automatisé basé sur Selenium WebDriver avec TestNG en Java.
+Il permet de simuler des tests fonctionnels sur une application web, incluant l'authentification, la navigation sur le tableau de bord, et la simulation de paiement à l'aide de données issues d'un fichier Excel.
 
-Ce projet est un framework de test automatisé utilisant Selenium WebDriver avec TestNG en Java.  
-Il permet d’automatiser les tests fonctionnels d’une application web, notamment le login, la navigation sur le dashboard, et la simulation de paiement.
+Technologies et outils utilisés
+Java 20
 
-## Technologies et outils utilisés
+Selenium WebDriver 4.11.0
 
-- Java 20
-- Selenium WebDriver 4.11.0
-- TestNG 7.8.0
-- Maven (pour la gestion des dépendances)
-- Apache POI (pour lire les données depuis Excel)
-- Apache Commons IO (pour la gestion des fichiers)
-- Page Object Model (POM) pour une meilleure organisation du code
-- Log4j2 (configuration minimale, peut être améliorée)
-  
-## Structure du projet
+TestNG 7.8.0
+
+Maven (gestion des dépendances)
+
+Apache POI (lecture de données Excel)
+
+Apache Commons IO (gestion de fichiers)
+
+Log4j2 (Logs)
+
+Page Object Model (POM)
+
+Structure du projet
+bash
+Copier
+Modifier
 .
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── Test/
-│   │   │   │   ├── cases/           # Cas de tests
-│   │   │   │   ├── pages/           # Pages de l'application
-│   │   │   │   └── Utility/         # Utilitaires (ex : lecture Excel)
-│   │   └── resources/
-│   │       ├── TestData/            # Données de tests (Excel)
-│   │       └── config.properties    # Configuration du projet
-├── pom.xml                          # Dépendances et configuration Maven
-└── README.md                        # Documentation du projet
+├── pom.xml                      # Dépendances et configuration Maven
+├── README.md                    # Documentation du projet
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── Test/
+    │   │       ├── cases/       # Cas de test automatisés
+    │   │       ├── pages/       # Représentation des pages (POM)
+    │   │       └── Utility/     # Outils : lecture Excel, navigateur, etc.
+    │   └── resources/
+    │       ├── TestData/        # Données de test (Excel)
+    │       └── config.properties # Configuration de base
+Configuration
+Avant d'exécuter les tests :
 
-## Configuration
+Modifier le fichier config.properties dans src/main/resources/ :
 
-- Modifier le fichier `config.properties` dans `src/main/resources` pour définir :  
-  - le navigateur (ex: chrome)  
-  - l’URL de l’application à tester  
+ini
+Copier
+Modifier
+browser=chrome
+url=https://exemple.com
+Ajouter les données de test dans un fichier Excel (ex: TestInfo.xlsx) à placer dans TestData.
 
-- Placer les fichiers Excel avec les données de test dans `TestData` (ex: `TestInfo.xlsx`)
+Exécution des tests
+Cloner ce dépôt Git.
 
-## Comment lancer les tests
+Importer le projet dans un IDE comme IntelliJ IDEA ou Eclipse.
 
-1. Cloner le projet  
-2. Ouvrir le projet dans un IDE (IntelliJ IDEA, Eclipse, etc.)  
-3. Lancer la classe `Test.cases.PaymentTestCase` via TestNG (Run as TestNG Test)  
-4. Observer les résultats dans la console et les rapports TestNG générés  
+Vérifier le fichier pom.xml et télécharger les dépendances Maven.
 
-## Points importants
+Exécuter la classe PaymentTestCase dans Test.cases en tant que TestNG Test.
 
-- Le framework utilise la lecture des données de test dans Excel via Apache POI  
-- Utilisation du pattern Page Object Model pour la maintenance facilitée  
-- Gestion du navigateur via une classe utilitaire `BrowserFactory`  
-- Captures d’écran automatiques possibles à l’échec des tests (fonction `captureScreenShot` dans BaseTest)  
+Consulter la console et les rapports générés.
 
-## Conseils
+Fonctionnalités principales
+Lecture des données depuis Excel via Apache POI.
 
-- Mettre à jour les dépendances Selenium et TestNG régulièrement  
-- Ajouter la dépendance `log4j-core` pour supprimer les warnings liés au logging  
-- Gérer les éléments « stale element » avec des attentes explicites (WebDriverWait)  
-- Organiser les tests en suites TestNG si plusieurs cas à exécuter ensemble  
+Organisation du code avec le modèle Page Object.
 
----
+Capture automatique d’écran en cas d’échec de test.
 
-Pour toute question, n’hésitez pas à me contacter. LinkedIn Hakim Alaoui Sahraoui
+Centralisation de la configuration via un fichier .properties.
 
----
+Gestion du navigateur via BrowserFactory.
 
+Préparation à l’intégration future avec Jenkins.
+
+Améliorations possibles
+Ajouter une gestion des logs complète avec log4j-core.
+
+Ajouter une gestion des attentes explicites (WebDriverWait) pour éviter les erreurs de type "StaleElementReferenceException".
+
+Implémenter des suites de tests via un fichier XML TestNG (testng.xml).
+
+Intégration continue avec Jenkins (pipeline de test automatisé).
+
+Génération de rapports avancés avec Allure ou ExtentReports.
+
+Ajouter un fichier .env pour la gestion sécurisée des credentials.
+
+Ajout d’un fichier CONTRIBUTING.md pour les contributions externes.
+
+Optimisation du temps d’exécution des tests avec parallélisation.
+
+Auteur
+Hakim Alaoui Sahraoui
+https://www.linkedin.com/in/hakim-alaoui-sahraoui-5a397a169/
