@@ -1,40 +1,38 @@
-package Test.cases;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import Test.Utility.ReadExcelFile;
-import Test.pages.BaseTest;
-import Test.pages.DashBoardPage;
-import Test.pages.LoginPage;
-import Test.pages.PaymentPage;
+import java.time.Duration;
 
-public class PaymentTestCase extends BaseTest {
+public class PaymentTestCase {
+    WebDriver driver;
+    WebDriverWait wait;
 
-    String fileName = System.getProperty("user.dir") + "\\TestData\\TestInfo.xlsx";
+    @BeforeClass
+    public void setUp() {
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.get("URL_DE_TON_APPLICATION");
+    }
 
-    @Test(priority = 1)
-    
+    @Test
     public void testcourses() {
-        LoginPage lp = new LoginPage(driver);
-        String username = ReadExcelFile.getCellValue(fileName, "LoginData", 1, 0);
-        String password = ReadExcelFile.getCellValue(fileName, "LoginData", 1, 1);
-        lp.loginPortal(username, password);
+        WebElement loginListItem = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='login-list']/li[1]/a"))
+        );
+        loginListItem.click();
+    }
 
-        DashBoardPage dp = new DashBoardPage(driver);
-        dp.dashboardclick();
-
-   
-        String cardnum = ReadExcelFile.getCellValue(fileName, "CardDetails", 0, 1); 
-        String expdate = ReadExcelFile.getCellValue(fileName, "CardDetails", 0, 2); 
-        String cvcnu   = ReadExcelFile.getCellValue(fileName, "CardDetails", 0, 3); 
-
-
-        
-        System.out.println("Card Number: " + cardnum);
-        System.out.println("Expiry Date: " + expdate);
-        System.out.println("CVC: " + cvcnu);
-
-        PaymentPage pg = new PaymentPage(driver);
-        pg.paymentOption( cardnum, expdate, cvcnu);
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
