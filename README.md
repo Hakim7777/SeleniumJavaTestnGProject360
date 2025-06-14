@@ -1,5 +1,6 @@
 
 Selenium Java TestNG Project 360
+
 Description
 Ce projet est un framework de test automatisé basé sur Selenium WebDriver avec TestNG en Java.
 Il permet de simuler des tests fonctionnels sur une application web, incluant l'authentification, la navigation sur le tableau de bord, et la simulation de paiement à l'aide de données issues d'un fichier Excel.
