@@ -1,79 +1,105 @@
-# Selenium Java TestNG Project 360
+# SeleniumJavaTestnGProject360
 
-## Description
-Ce projet est un framework de test automatisé basé sur Selenium WebDriver avec TestNG en Java.  
-Il permet de simuler des tests fonctionnels sur une application web, incluant :
-- l'authentification,
-- la navigation sur le tableau de bord,
-- la recherche de produit,
-- et la simulation de paiement à l'aide de données Excel.
+[![Java](https://img.shields.io/badge/Java-20-red)](#)
+[![Selenium WebDriver](https://img.shields.io/badge/Selenium-4.11-blue)](#)
+[![TestNG](https://img.shields.io/badge/TestNG-7.8-green)](#)
+[![Maven](https://img.shields.io/badge/Maven-Project-orange)](#)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-## Technologies et outils utilisés
-- Java 20  
-- Selenium WebDriver 4.11.0  
-- TestNG 7.8.0  
-- Maven (gestion des dépendances)  
-- Apache POI (lecture de données Excel)  
-- Apache Commons IO (gestion de fichiers)  
-- Log4j2 (logs techniques)  
-- Design Pattern : Page Object Model (POM)
+## 🛠️ Présentation
 
-## Structure du projet
-```
+**SeleniumJavaTestnGProject360** est un framework d’automatisation de tests End‑to‑End, conçu en **Java**, **Selenium WebDriver** et **TestNG**, avec une architecture **POM** (Page Object Model) robuste pour garantir la maintenabilité, la réutilisabilité et l’intégration continue.
 
-.
-├── pom.xml                       # Dépendances et configuration Maven
-├── README.md                     # Documentation du projet
+### Caractéristiques clés
+
+* **Page Object Model (POM)** : séparation des locators et des actions métiers pour chaque page.
+* **Data‑Driven Testing** : lecture dynamique des données depuis Excel via Apache POI.
+* **Rapports détaillés** : génération de rapports TestNG et captures d’écran automatiques en cas d’échec.
+* **Logging avancé** : logs techniques centralisés avec Log4j2.
+* **Gestion de configuration** : fichier `config.properties` pour paramétrer navigateur, URL et chemins de données.
+* **Maven** : gestion des dépendances et build.
+* **Extensible** : options pour Allure, Jenkins, parallélisation et API mocks.
+
+## 📁 Structure du projet
+
+```text
+SeleniumJavaTestnGProject360/
+├── pom.xml                     # Dépendances Maven
+├── README.md                   # Documentation
+├── LICENSE                     # Licence MIT
 └── src/
-├── main/
-│   ├── java/
-│   │   └── Test/
-│   │       ├── cases/        # Cas de test automatisés
-│   │       ├── pages/        # Représentation des pages (POM)
-│   │       └── Utility/      # Outils : ExcelReader, BrowserFactory, etc.
-│   └── resources/
-│       ├── TestData/         # Données de test Excel
-│       └── config.properties # Configuration principale
-
+    ├── main/
+    │   ├── java/
+    │   │   └── com/project/
+    │   │       ├── pages/       # Page Objects
+    │   │       ├── testcases/   # Classes de tests TestNG
+    │   │       └── utils/       # ExcelReader, BrowserFactory, Logger
+    │   └── resources/
+    │       ├── TestData/        # Fichiers Excel
+    │       └── config.properties# Paramètres (browser, URL)
+    └── test-output/            # Rapports TestNG et captures
 ```
 
-## Configuration
-Avant d'exécuter les tests, il faut configurer le fichier `config.properties` :
+## ⚙️ Configuration
 
-```
+1. **Cloner le dépôt** :
 
+   ```bash
+   ```
+
+git clone [https://github.com/Hakim7777/SeleniumJavaTestnGProject360.git](https://github.com/Hakim7777/SeleniumJavaTestnGProject360.git)
+cd SeleniumJavaTestnGProject360
+
+````
+2. **Configurer** `src/main/resources/config.properties` :
+   ```properties
 browser=chrome
-url=[https://exemple.com](https://exemple.com)
+url=https://exemple.com
+testData=src/main/resources/TestData/TestInfo.xlsx
+````
 
-```
+3. **Installer les dépendances Maven** :
 
-Et placer un fichier Excel (ex: TestInfo.xlsx) dans le dossier `TestData`.
+   ```bash
+   ```
 
-## Exécution des tests
-1. Cloner ce dépôt Git.  
-2. Ouvrir le projet dans un IDE (ex: IntelliJ IDEA, Eclipse).  
-3. Vérifier le fichier pom.xml et télécharger les dépendances Maven.  
-4. Lancer la classe `PaymentTestCase` dans `Test.cases` en tant que TestNG Test.  
-5. Consulter les résultats dans la console et les rapports générés.
+mvn clean install
 
-## Fonctionnalités principales
-- Lecture dynamique des données depuis Excel (Apache POI).
-- Organisation du code avec le modèle Page Object Model (POM).
-- Capture automatique d’écran en cas d’échec d’un test.
-- Configuration centralisée via un fichier `.properties`.
-- Gestion du navigateur via BrowserFactory.
-- Extensible pour une intégration continue (CI/CD).
+````
 
-## Améliorations futures
-- Intégration continue avec Jenkins.
-- Génération de rapports détaillés avec Allure ou ExtentReports.
-- Implémentation de suites de tests via testng.xml.
-- Parallélisation des tests pour optimiser les temps d'exécution.
-- Ajout de WebDriverWait pour gérer les éléments dynamiques.
-- Sécurisation des credentials via fichier `.env` ou Vault.
-- Ajout de tests API ou mocks pour les interactions backend.
-- Fichier CONTRIBUTING.md pour les contributions open source.
+## ▶️ Exécution des tests
 
-## Auteur
-Hakim Alaoui Sahraoui  
-https://www.linkedin.com/in/hakim-alaoui-sahraoui-5a397a169/
+- **Via IDE** : exécuter les classes `*TestCase.java` en tant que TestNG Test.
+- **Via Maven** :
+  ```bash
+mvn test
+````
+
+## 📊 Rapports & Logs
+
+* Rapports TestNG générés dans `test-output/`
+* Captures d’écran en cas d’échec dans `test-output/screenshots/`
+* Logs détaillés dans `logs/` via Log4j2.
+
+## 🌟 Fonctionnalités
+
+* Lecture des données Excel (Apache POI)
+* Gestion centralisée du navigateur (BrowserFactory)
+* Captures dynamiques et reporting automatique
+* Extensible pour CI/CD (Jenkins, GitHub Actions)
+
+## 🚀 Roadmap
+
+* ✅ Intégration continue avec Jenkins
+* ⚙️ Migration vers Allure Reports
+* 🚀 Parallélisation des tests TestNG
+* 🔒 Sécurisation des credentials (.env ou Vault)
+* 🤝 Rédaction de CONTRIBUTING.md
+
+## 📄 Licence
+
+Ce projet est sous licence **MIT**. Voir [LICENSE](LICENSE).
+
+## 📬 Contact
+
+Hakim Sahraoui – [hakimsahraoui.de@gmail.com](mailto:hakimsahraoui.de@gmail.com)
